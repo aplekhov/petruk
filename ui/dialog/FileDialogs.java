@@ -22,7 +22,7 @@ public class FileDialogs {
     chooser.setMultiSelectionEnabled(false);
     chooser.setSelectedFile(suggestedFile);
     chooser.setApproveButtonText("Save");
-    int returnVal = chooser.showOpenDialog(parent);
+    int returnVal = chooser.showSaveDialog(parent);
     if (returnVal == JFileChooser.APPROVE_OPTION) {
       newFile = chooser.getSelectedFile();
       if (newFile.exists()) {
