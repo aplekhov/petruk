@@ -218,13 +218,14 @@ public class EditorPanel extends JPanel implements PetrukDisplay {
     // create the editor
     editor = new JTextPane();
     editor.setDragEnabled(true);
-    editor.setBorder(null);
+    //editor.setBorder(BorderFactory.createEmptyBorder(0,20,0,20));
     defaultKeyActions = JTextPane.addKeymap("editor", editor.getKeymap());
     customKeyActions = JTextPane.addKeymap("custom", defaultKeyActions);
     defaultKeyActions.addActionForKeyStroke(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0),
             new DialogueBreakAction());
     editor.setKeymap(customKeyActions);
 
+    //editor.setMargin(new Insets(0,6,0,6));
 
     // create the document
     document = new DefaultStyledDocument();
@@ -240,7 +241,7 @@ public class EditorPanel extends JPanel implements PetrukDisplay {
     //pinnedTextPanel.setBackground(Color.BLACK);
     //pinnedTextPanel.setForeground(Color.RED);
     //pinnedTextPanel.setFont(new Font("monospaced", Font.PLAIN, 14));
-    pinnedTextPanel.setBorder(null);
+    pinnedTextPanel.setBorder(BorderFactory.createEmptyBorder(0,20,0,20));
     //System.out.println(pinnedTextPanel.getPreferredSize());
 
     // create the pinned text document model
@@ -267,6 +268,20 @@ public class EditorPanel extends JPanel implements PetrukDisplay {
     port.add(editor);
     port.setBorder(null);
     scroller.setViewportBorder(null);
+    scroller.setPreferredSize(new Dimension(2000,2000));
+
+    JPanel scrollerPanel = new JPanel();
+    scrollerPanel.setBackground(Color.BLACK);
+    scrollerPanel.setLayout(new BoxLayout(scrollerPanel, BoxLayout.X_AXIS));
+    //scrollerPanel.setLayout(new BorderLayout());
+    scrollerPanel.setBorder(null);
+    Dimension minSize = new Dimension(5, 100);
+    Dimension prefSize = new Dimension(120, 100);
+    Dimension maxSize = new Dimension(120, 100);
+    scrollerPanel.add(new Box.Filler(minSize, prefSize, maxSize));
+    scrollerPanel.add(scroller);
+    scrollerPanel.add(new Box.Filler(minSize, prefSize, maxSize));
+
 
 
     JPanel panel = new JPanel();
@@ -287,7 +302,8 @@ public class EditorPanel extends JPanel implements PetrukDisplay {
     //scroller.setPreferredSize(scroller.getMaximumSize());
     //pinnedTextScroller.setPreferredSize(new Dimension(60, 0));
 
-    editPanel.add(scroller);
+    //editPanel.add(scroller);
+    editPanel.add(scrollerPanel);
     panel.add("Center", editPanel);
     add("Center", panel);
 
