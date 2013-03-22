@@ -453,6 +453,14 @@ public class PetrukUI extends JFrame {
       logger.info("performing full screen change action!");
       KeyStroke esc_key = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0);
 
+      GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+      GraphicsDevice gd = ge.getDefaultScreenDevice();
+
+      if (!gd.isFullScreenSupported()){
+        logger.info("full screen is not supported!");
+        return;
+      }
+
       if (!isInFullScreenMode) {
         menuBar.setVisible(false);
         menuBar.setEnabled(false);
@@ -463,20 +471,24 @@ public class PetrukUI extends JFrame {
         frame.dispose();
         frame.setUndecorated(true);
 
-        //GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        //GraphicsDevice gd = ge.getDefaultScreenDevice();
+                
+        
+        
         //Window w  = gd.getFullScreenWindow();
         //gd.setFullScreenWindow(frame);
         //DisplayMode dm = gd.getDisplayMode();
         //frame.setSize(dm.getWidth(), dm.getHeight());
 
-        Toolkit tk = Toolkit.getDefaultToolkit();
+        /*Toolkit tk = Toolkit.getDefaultToolkit();
         frame.setLocation(0, 0);
         frame.setBounds(new Rectangle(new Point(0, 0), tk.getScreenSize()));
         frame.setSize(tk.getScreenSize());
         frame.setResizable(false);
         frame.setExtendedState(Frame.MAXIMIZED_BOTH);
         //frame.pack();
+        */
+        gd.setFullScreenWindow(frame);
+
         frame.setVisible(true);
         frame.setEnabled(true);
         frame.toFront();
@@ -498,6 +510,7 @@ public class PetrukUI extends JFrame {
         frame.setUndecorated(false);
         frame.setExtendedState(Frame.NORMAL);
         //frame.pack();
+        gd.setFullScreenWindow(null);
         frame.setResizable(true);
         frame.setVisible(true);
         frame.toFront();
