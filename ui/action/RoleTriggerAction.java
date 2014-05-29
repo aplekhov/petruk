@@ -27,9 +27,7 @@ public class RoleTriggerAction extends AbstractAction{
   
   public void actionPerformed(java.awt.event.ActionEvent event){
     logger.info("action triggered!");
-    // if we're in the middle of dialogue or it's a new line but we don't display the prompt, then just
-    // trigger the displaying of the name, without switching styles
-    if(display.isInDialogue() || !role.isPromptDisplayed()){
+    if(display.isInDialogue()){
       if(role.isNameDisplayed()){
         display.insertText(role.getNameForDisplay());
       }
