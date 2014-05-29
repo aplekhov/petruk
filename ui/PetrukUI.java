@@ -488,7 +488,7 @@ public class PetrukUI extends JFrame {
         //frame.pack();
         */
         gd.setFullScreenWindow(frame);
-
+        frame.setVisible(false);
         frame.setVisible(true);
         frame.setEnabled(true);
         frame.toFront();
