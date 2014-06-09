@@ -75,6 +75,7 @@ public class PetrukUI extends JFrame {
     JMenu setup_menu = new JMenu("Setup");
     JMenu text_menu = new JMenu("Text");
     JMenu display_menu = new JMenu("Display");
+    JMenu about_menu = new JMenu("About");
 
     // file menu
     JMenuItem new_menu_item = new JMenuItem("New Performance Setup");
@@ -200,6 +201,14 @@ public class PetrukUI extends JFrame {
     JMenuItem go_fullscreen_menu_item = new JMenuItem("Go Fullscreen");
     go_fullscreen_menu_item.addActionListener(new ChangeFullScreenModeAction());
 
+    // About menu
+    JMenuItem about_petruk_menu_item = new JMenuItem("About Petruk");
+    about_petruk_menu_item.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        _aboutPetrukAction();
+      }
+    });
+
     file_menu.add(new_menu_item);
     file_menu.add(open_menu_item);
     file_menu.add(save_menu_item);
@@ -218,10 +227,13 @@ public class PetrukUI extends JFrame {
 
     display_menu.add(go_fullscreen_menu_item);
 
+    about_menu.add(about_petruk_menu_item);
+
     menubar.add(file_menu);
     menubar.add(setup_menu);
     menubar.add(text_menu);
     menubar.add(display_menu);
+    menubar.add(about_menu);
 
     return menubar;
   }
@@ -374,6 +386,12 @@ public class PetrukUI extends JFrame {
         }
       }
     }
+  }
+
+  protected void _aboutPetrukAction() {
+    JOptionPane.showMessageDialog(this,
+    "Petruk - Wayang Live Translation Tool\n Written by Anthony Plekhov\n Contact: anthony.plekhov@gmail.com\n Copyright © 2009-2014 Anthony Plekhov",
+    "About Petruk", JOptionPane.INFORMATION_MESSAGE);
   }
 
   /**
