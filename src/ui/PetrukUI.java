@@ -32,6 +32,7 @@ public class PetrukUI extends JFrame {
   private JMenuItem save_menu_item;
   private static AppExitAction exitAction = new AppExitAction();
   private static String DEFAULT_TITLE = "Petruk";
+  private static String VERSION = "0.1.0";
   private PetrukState petrukState;
   private static Logger logger = Logger.getLogger(PetrukUI.class.getPackage().getName());
 
@@ -268,7 +269,7 @@ public class PetrukUI extends JFrame {
   }
 
   protected String _getTitle() {
-    String title = DEFAULT_TITLE;
+    String title = DEFAULT_TITLE + " v" + VERSION;
     title = title + " - " + petrukState.getSaveFile().getName();
     if (petrukState.isModifiedSinceLastSave()) {
       title = title + "* (Modified)";
@@ -390,7 +391,7 @@ public class PetrukUI extends JFrame {
 
   protected void _aboutPetrukAction() {
     JOptionPane.showMessageDialog(this,
-    "Petruk - Wayang Live Translation Tool\n Written by Anthony Plekhov\n Contact: anthony.plekhov@gmail.com\n Copyright © 2009-2014 Anthony Plekhov",
+    "Petruk - Wayang Live Translation Tool\n"+"Version "+VERSION+"\nWritten by Anthony Plekhov\nContact: anthony.plekhov@gmail.com\nCopyright © 2009-2023 Anthony Plekhov",
     "About Petruk", JOptionPane.INFORMATION_MESSAGE);
   }
 
